@@ -28,6 +28,7 @@ CONFIG = {
     'days_back': 7                                 # Number of days to extract data for
 }
 
+#  Manages Authentication, REST API and error handling with WxCC APIs
 class WebexCCGraphQLClient:
     def __init__(self, base_url: str, access_token: str, org_id: str):
         """
@@ -90,6 +91,7 @@ class WebexCCGraphQLClient:
             logger.error(f"Query execution failed: {e}")
             raise
 
+#  Manages SQLLITE DB, builds tables and inserts data
 class SQLiteManager:
     def __init__(self, db_path: str):
         """
@@ -430,6 +432,7 @@ class SQLiteManager:
         """Close database connection"""
         self.conn.close()
 
+#  Contains GraphQL queries for table data
 class WebexCCDataExtractor:
     def __init__(self, client: WebexCCGraphQLClient, db_manager: SQLiteManager):
         self.client = client
